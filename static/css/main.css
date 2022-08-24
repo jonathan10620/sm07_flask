@@ -1,0 +1,22 @@
+body {
+    background-color: #c6d1f8;
+    font-family: 'Monaco';
+}
+
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+}
+
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+    content: "";
+}
+
+
+input,
+input::placeholder {
+    font-size: 13.5px;
+}
