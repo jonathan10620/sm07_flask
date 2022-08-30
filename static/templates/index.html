@@ -14,78 +14,23 @@
 
 <body>
     {% include 'includes/nav.html' %}
-    <div class="container">
-        <form name='myForm' action="" method="POST" autocomplete="off" onsubmit="return validateForm()">
-            <div class="container">
-                <input type="text" name="portal_id" id="" placeholder="Portal ID">
-                <input type="text" name="fax" id="" placeholder="Fax #">
-                <br>
-                <input size="7" type="text" name="age" id="" placeholder="Age">
-                <br>
-                <span>
-                    <span>Diagnosis:</span>
-                    <span>
-                        <input type="checkbox" name="htn" id="htn_id">
-                        <label for="htn_id">HTN</label>
-                        <input type="checkbox" name="dm" id="dm_id">
-                        <label for="dm_id">DM</label>
-                    </span>
-                </span>
-                <br>
-                <span>Procedure Code:
-                    <input type="checkbox" name="s9110" id="recert_id">
-                    <label for="recert_id">S9110</label>
+    <div class="container d-flex">
+        <form action="">
+            <div class="form-group">
+                {% include 'includes/portal_fax.html' %}
+                {% include 'includes/diagnosis.html' %}
+                {% include 'includes/procedure_code.html' %}
+                {% include 'includes/req_dos.html' %}
+                {% include 'includes/decision.html' %}
 
-                    <input type="checkbox" name="s9110_U1" id="setup_id">
-                    <label for="setup_id">S9110-U1</label>
-                </span>
-                <br>
-                <span class="">Requested DOS
-
-                    <input placeholder='start' type="date" name="start_date" id="">-
-                    <input placeholder='end' type="date" name="end_date" id="">
-                    <button type="button" onclick="calculateDates()">Calculate Days</button>
-                </span>
+                <div class="form-group mt-5">
+                    <label for="finalComment">Final Comment</label>
+                    <textarea class="form-control" id="finalComment" rows="5">{{comment}}</textarea>
+                </div>
             </div>
-            <hr>
-            <div class="">
-                <span class=""> Clinician decision:
-                    <input type="radio" name="decision" id="accept_id" value="0">
-                    <label for="accept_id">Accepted</label>
-
-                    <input type="radio" name="decision" id="mod_id" value="1">
-                    <label for="mod_id">Modified</label>
-
-                    <input type="radio" name="decision" id="pend_id" value="2">
-                    <label for="pend_id">Pend</label>
-                </span>
-            </div>
-
-            <div class="container">
-                <button type="submit">Submit</button>
-                <button type="button" onclick="copyFunction()">Copy text</button>
-            </div>
-            <hr>
-
-            <textarea name="" id="final_comment" cols="90" rows="5" placeholder="Final Comment">{{comment}}</textarea>
         </form>
 
-
-
-        <div class="container d-flex">
-            <form action="">
-                <div class="form-group">
-                    {% include 'includes/portal_fax.html' %}
-                    {% include 'includes/diagnosis.html' %}
-
-                    <div class="form-group mt-5">
-                        <label for="finalComment">Final Comment</label>
-                        <textarea class="form-control" id="finalComment" rows="5">{{comment}}</textarea>
-                    </div>
-                </div>
-            </form>
-
-        </div>
+    </div>
     </div>
 
 

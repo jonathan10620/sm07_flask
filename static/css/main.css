@@ -20,3 +20,18 @@ input,
 input::placeholder {
     font-size: 13.5px;
 }
+
+
+#recert_id {
+    margin-right: 10px;
+}
+
+#setup_id {
+    margin-right: 10px;
+}
+#htn {
+    margin-right: 10px;
+}
+#dm {
+    margin-right: 10px;
+}
