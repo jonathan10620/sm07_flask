@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from helpers import *
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
@@ -19,21 +19,30 @@ def index():
         set_up = request.form.get('s9110_U1')
         decision = request.form.get('decision')
 
+        #TODO recieved date calculator
+
+
         dx = get_dx(htn, dm)
         procedure = get_proc(recert, set_up)
         dos = get_dos(start_date, end_date)
 
         exceed_auth = get_exceed_auth(start_date, end_date)
-
+        
+        #if approved
         if decision == '0':
-            final_decision = 'DOS {accepted_dos} are approved based on '
+            if exceed_auth:
+                end_date = start_date + timedelta(days=179)
+
+            final_decision_blurb = f'DOS {start_date.strftime("%m/%d/%Y")}-{end_date.strftime("%m/%d/%Y")} are approved based on Texas Medicaid Medical Policy Manual-XXX-XXXX Telemonitoring Services and SOP 111. <Initials>'
+        #TODO MODIFIED DECISION BLURB
         elif decision == '1':
             pass
+        #TODO PEND VERBAGE
         else:
-            final_decision = 'TMHP is pending request for the following reasons'
+            final_decision = 'TMHP is pending request for the following reasons: '
 
-        comment = f'Portal ID: {pid} Fax # {fax}. Client is eligible. Duplicates/history checked. None found. Provider is eligible. Provider type 44. No current or future PDC. Submitter certification page submitted and completed. Requested {procedure} DOS: {dos}. Client is {age if age else 0} years old. The client has a qualifying condition of {dx} with at least 2 risk factors listed in policy. {exceed_auth}{final_decision}'
-
+        comment = f'Portal ID: {pid} Fax # {fax}. Client is eligible. Duplicates/history checked. None found. Provider is eligible. Provider type 44. No current or future PDC. Submitter certification page submitted and completed. Requested {procedure} for DOS: {dos}. Client is {age} years old. The client has a qualifying condition of {dx} with at least 2 risk factors listed in policy. {exceed_auth}{final_decision_blurb}'
+        print(comment)
         return render_template('index.html',comment=comment)
         
     return render_template('index.html')

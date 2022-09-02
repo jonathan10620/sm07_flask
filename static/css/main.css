@@ -1,6 +1,7 @@
 body {
-    background-color: #c6d1f8;
+    background-color: #7EC8E3;
     font-family: 'Monaco';
+    text-align: center;
 }
 
 
@@ -35,3 +36,12 @@ input::placeholder {
 #dm {
     margin-right: 10px;
 }
+
+textarea { 
+    font-size: 12px; 
+}
+
+#hidden_modified {
+    display: none;
+}
+

@@ -1,34 +1,71 @@
-
-
 <hr>
 <div class="form-row mt-1">
-    <span class="pr-4">Clinician Decision:</span>
-        <div class="form-check form-check-inline pl-2">
-            <input name='decision' class="form-check-input" type="radio" id="approved">
-            <label class="form-check-label" for="approved">Approved</label>
+    <span class="pr-2">Clinician Decision:</span>
+    <div class="form-check form-check-inline pl-2">
+        <input onclick="revealModForm()" name='decision' class="form-check-input" type="radio" id="approved" value='0'>
+        <label class="form-check-label" for="approved">Approved</label>
+    </div>
+
+    <div class="form-check form-check-inline pl-2">
+        <input onclick="revealModForm()" name='decision' class="form-check-input" type="radio" id="modified" value='1'>
+        <label class="form-check-label" for="modified">Modified</label>
+    </div>
+
+    <div class="form-check form-check-inline pl-2">
+        <input onclick="revealModForm()" name='decision' class="form-check-input" type="radio" id="pend" value='2'>
+        <label class="form-check-label" for="pend">Pend</label>
+    </div>
+
+    <div class="form-row mt-1" id="hidden_modified" style="display:none;">
+        <div class="form-check form-check-inline pl-2 mt-3">
+            <span class="pr-3">Denied DOS:</span>
+            <input class="form-check-input" placeholder='start' type="date" name="mod_app_start" id="">-
+            <input class="form-check-input" placeholder='end' type="date" name="mod_app_end" id="">
+            <button style='font-size: 12px;' type="button" onclick="calculateDates()">Service Units</button>
         </div>
-
-        <div class="form-check form-check-inline pl-2">
-            <input name='decision' class="form-check-input" type="radio" id="modified">
-            <label class="form-check-label" for="modified">Modified</label>
+        <div class="form-check form-check-inline pl-2 mt-2">
+            <span class="">Approved DOS:</span>
+            <input class="form-check-input" placeholder='start' type="date" name="mod_den_start" id="">-
+            <input class="form-check-input" placeholder='end' type="date" name="mod_den_end" id="">
+            <button style='font-size: 12px;' type="button" onclick="calculateDates()">Service Units</button>
         </div>
+    </div>
 
-        <div class="form-check form-check-inline pl-2">
-            <input name='decision' class="form-check-input" type="radio" id="pend">
-            <label class="form-check-label" for="pend">Pend</label>
-        </div>
 
-        
 
-        
+
 </div>
-<div class="form-row mt-3">
-    <div class="form-check form-check-inline">
-        <button type="submit">Submit</button>
-    </div>
-    <div class="form-check form-check-inline">
-        <button type="button" onclick="copyFunction()">Copy text</button>
+
+<div class="form-row mt-4 row justify-content-between">
+    <div class="col-4 form-check form-check-inline" style="display: inline-block; margin-left: auto; margin-right: auto">
+        <button class='btn btn-primary btn-block' onlclick='validateForm()' type="submit">Submit</button>
     </div>
     
-    
+
+</div>
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Modal body..
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
 </div>

@@ -14,57 +14,90 @@
 
 <body>
     {% include 'includes/nav.html' %}
-    <div class="container d-flex">
-        <form action="">
-            <div class="form-group">
+    <div class="container d-flex mt-4">
+        <form style="display: inline-block; margin-left: auto; margin-right: auto  " name='myForm' method="POST" onsubmit="return validateForm()">
+            <div class="form-group mx-3">
                 {% include 'includes/portal_fax.html' %}
                 {% include 'includes/diagnosis.html' %}
                 {% include 'includes/procedure_code.html' %}
                 {% include 'includes/req_dos.html' %}
                 {% include 'includes/decision.html' %}
 
-                <div class="form-group mt-5">
+                <div class="form-group mt-3">
                     <label for="finalComment">Final Comment</label>
                     <textarea class="form-control" id="finalComment" rows="5">{{comment}}</textarea>
                 </div>
+
+                <div class="form-check form-check-inline">
+                    <button type="button" onclick="copyFunction()">Copy text</button>
+                </div>
             </div>
         </form>
+        </div>
 
-    </div>
-    </div>
+    
+
+
+
+
 
 
     <script>
-
         function validateForm() {
             var start = document.forms["myForm"]["start_date"].value;
             var end = document.forms["myForm"]["end_date"].value;
             var decision = document.forms['myForm']['decision'].value;
-            if (start == "") {
-                alert("Requested start date must be filled out");
-                return false;
-            } else if (end == "") {
-                alert("Requested end date must be filled out");
+
+            var age = document.getElementById('ageInput').value;
+
+            var portalID = document.getElementById('portalInput').value
+
+            if (Number.isNaN(parseInt(portalID))) {
+                swal('Error', 'Portal ID is not valid!', 'error');
                 return false;
             }
-            else if (decision == '') {
-                alert("A clinician decision must be selected!");
+
+            if (!_.inRange(parseInt(age), 0, 150)) {
+                swal('Error', 'Client age is not a valid number!', 'error');
+                return false;
+            }
+
+            if (start == "") {
+                swal('Error', 'Please enter a start date', 'error');
+                return false;
+            } else if (end == "") {
+                swal('Error', 'Please enter an end date', 'error');
+                return false;
+            } else if (decision == '') {
+                swal('Error', 'Please select a decision', 'error');
                 return false;
             }
         }
+
+
         function copyFunction() {
             /* Get the text field */
-            var copyText = document.getElementById("final_comment");
+            var copyText = document.getElementById("finalComment");
             copyText.select();
             document.execCommand('copy');
             /* Alert the copied text */
             alert("Copied the clinician comment.");
+            copyText.value = '';
         }
 
         function calculateDates() {
-
             var start_date = document.forms['myForm']['start_date'].value;
             var end_date = document.forms['myForm']['end_date'].value;
+
+            if (!start_date) {
+                swal('Error', 'Please enter a start date', 'error');
+                return
+            }
+
+            if (!end_date) {
+                swal('Error', 'Please enter an end date', 'error');
+                return
+            }
 
             let date_1 = new Date(start_date);
             let date_2 = new Date(end_date);
@@ -72,43 +105,50 @@
 
             let TotalDays = Math.ceil(difference / (1000 * 3600 * 24)) + 1;
 
-
-
             if (TotalDays == 180) {
                 swal(`Total days ${TotalDays}.`, 'This equals 6 service units.', 'success');
-            }
-            else if (_.inRange(TotalDays, 31)) {
+            } else if (_.inRange(TotalDays, 31)) {
 
                 swal(`Total days ${TotalDays}.`, 'This equals 1 service units.', 'warning');
-            }
-            else if (_.inRange(TotalDays, 31, 61)) {
+            } else if (_.inRange(TotalDays, 31, 61)) {
                 swal(`Total days ${TotalDays}.`, 'This equals 2 service units.', 'warning');
-            }
-            else if (_.inRange(TotalDays, 61, 91)) {
+            } else if (_.inRange(TotalDays, 61, 91)) {
 
                 swal(`Total days ${TotalDays}.`, 'This equals 3 service units.', 'warning');
-            }
-            else if (_.inRange(TotalDays, 91, 121)) {
+            } else if (_.inRange(TotalDays, 91, 121)) {
 
                 swal(`Total days ${TotalDays}.`, 'This equals 4 service units.', 'warning');
-            }
-            else if (_.inRange(TotalDays, 121, 151)) {
+            } else if (_.inRange(TotalDays, 121, 151)) {
 
                 swal(`Total days ${TotalDays}.`, 'This equals 5 service units.', 'warning');
-            }
-            else if (_.inRange(TotalDays, 151, 180)) {
+            } else if (_.inRange(TotalDays, 151, 180)) {
                 swal(`Total days ${TotalDays}.`, 'This equals 6 service units.', 'warning');
-            }
-            else {
+            } else {
                 swal(`Total days ${TotalDays}.`, 'This requires 6 service units and INFO detail', 'info');
+            }
+        }
+
+
+        function revealModForm() {
+
+            var approved = document.getElementById('approved').checked;
+            var modified = document.getElementById('modified').checked;
+            var pend = document.getElementById('pend').checked;
+
+            if (modified) {
+                document.getElementById('hidden_modified').style.display = 'block';
+            } else {
+                document.getElementById('hidden_modified').style.display = 'none';
 
             }
-
 
         }
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>
