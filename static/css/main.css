@@ -1,7 +1,6 @@
 body {
-    background-color: #7EC8E3;
+    background-color: #CFD3CD;
     font-family: 'Monaco';
-    text-align: center;
 }
 
 
@@ -45,3 +44,13 @@ textarea {
     display: none;
 }
 
+form {
+    max-width: 700px;
+    display: inline-block;
+}
+
+.center-mod {
+
+    
+
+}

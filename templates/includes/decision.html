@@ -16,15 +16,19 @@
         <label class="form-check-label" for="pend">Pend</label>
     </div>
 
+</div>
+
+<div class="center-mod">
     <div class="form-row mt-1" id="hidden_modified" style="display:none;">
         <div class="form-check form-check-inline pl-2 mt-3">
-            <span class="pr-3">Denied DOS:</span>
+            <span class="pr-3">Denied:</span>
             <input class="form-check-input" placeholder='start' type="date" name="mod_app_start" id="">-
             <input class="form-check-input" placeholder='end' type="date" name="mod_app_end" id="">
             <button style='font-size: 12px;' type="button" onclick="calculateDates()">Service Units</button>
         </div>
+
         <div class="form-check form-check-inline pl-2 mt-2">
-            <span class="">Approved DOS:</span>
+            <span class="">Approved:</span>
             <input class="form-check-input" placeholder='start' type="date" name="mod_den_start" id="">-
             <input class="form-check-input" placeholder='end' type="date" name="mod_den_end" id="">
             <button style='font-size: 12px;' type="button" onclick="calculateDates()">Service Units</button>
@@ -32,15 +36,21 @@
     </div>
 
 
-
-
 </div>
 
 <div class="form-row mt-4 row justify-content-between">
-    <div class="col-4 form-check form-check-inline" style="display: inline-block; margin-left: auto; margin-right: auto">
-        <button class='btn btn-primary btn-block' onlclick='validateForm()' type="submit">Submit</button>
+    <div class="col-4 form-check form-check-inline"
+        style="display: inline-block; margin-left: auto; margin-right: auto">
+        <button class='btn btn-primary btn-block btn-sm' onlclick='validateForm()' type="submit">Submit</button>
     </div>
-    
+
+    <div class="col-4 form-check form-check-inline"
+        style="display: inline-block; margin-left: auto; margin-right: auto">
+        <button style="font-size:smaller;" type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">
+            MD signature check
+        </button>
+    </div>
+
 
 </div>
 
@@ -52,20 +62,24 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
+                <h5 class="modal-title">MD signature calculator</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                Modal body..
-            </div>
+                
+                <div class="form-check form-check-inline">
+                    <span class="pr-2">MD signature date:</span>
+                    <input class="form-check-input" type="date" name="start_date" id="md_date">
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer mt-5">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" onclick='mdSignatureCheck()' class="btn btn-primary">Check</button>
+                </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-
         </div>
     </div>
 </div>

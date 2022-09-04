@@ -15,7 +15,8 @@
 <body>
     {% include 'includes/nav.html' %}
     <div class="container d-flex mt-4">
-        <form style="display: inline-block; margin-left: auto; margin-right: auto  " name='myForm' method="POST" onsubmit="return validateForm()">
+        <form style="margin-left: auto; margin-right: auto  " name='myForm' method="POST"
+            onsubmit="return validateForm()">
             <div class="form-group mx-3">
                 {% include 'includes/portal_fax.html' %}
                 {% include 'includes/diagnosis.html' %}
@@ -33,9 +34,9 @@
                 </div>
             </div>
         </form>
-        </div>
+    </div>
 
-    
+
 
 
 
@@ -139,16 +140,46 @@
                 document.getElementById('hidden_modified').style.display = 'block';
             } else {
                 document.getElementById('hidden_modified').style.display = 'none';
+            }
+        }
 
+
+        function mdSignatureCheck() {
+            var md_date = document.getElementById('md_date').value;
+
+            var start_date = document.getElementById('start_date').value;
+
+            if (!start_date) {
+                swal('Error', 'Ensure that the Request start date is filled in on the main page', 'warning')
+                $('#myModal').modal('hide');
+                return
             }
 
+            var md_date_obj = new Date(md_date)
+            var req_date_obj = new Date(start_date)
+
+            const diffTime = Math.abs(req_date_obj - md_date_obj);
+            const diffDays = 1 + Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays < 31) {
+                swal(`${diffDays} days`, 'Valid signature date', 'success')
+            } else {
+                swal(`${diffDays} days`, 'This is an INVALID signature date', 'error')
+            }
         }
+        
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
