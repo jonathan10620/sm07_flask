@@ -118,7 +118,7 @@ function calculateServiceDenied() {
     var start_date = document.getElementById('mod_den_start_id').value;
     var end_date = document.getElementById('mod_den_end_id').value;
 
-    if (start_date === "" || end_date === "" ) {
+    if (start_date === "" || end_date === "") {
         swal('Error', 'Please enter dates to calculate', 'warning')
         return
     }
@@ -129,21 +129,21 @@ function calculateServiceDenied() {
     let TotalDays = Math.ceil(difference / (1000 * 3600 * 24)) + 1;
 
     if (TotalDays == 180) {
-        swal('6 service units.',`Total days: ${TotalDays}`,  'success');
+        swal('6 service units.', `Total days: ${TotalDays}`, 'success');
     } else if (_.inRange(TotalDays, 31)) {
-        swal('1 service unit.', `Total days: ${TotalDays}`,'warning');
+        swal('1 service unit.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 31, 61)) {
-        swal('2 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('2 service units.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 61, 91)) {
-        swal('3 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('3 service units.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 91, 121)) {
-        swal('4 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('4 service units.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 121, 151)) {
-        swal('5 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('5 service units.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 151, 180)) {
-        swal('6 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('6 service units.', `Total days: ${TotalDays}`, 'warning');
     } else {
-        swal('6 service units and INFO detail',`Total days ${TotalDays}.`,  'info');
+        swal('6 service units and INFO detail', `Total days ${TotalDays}.`, 'info');
     }
 }
 
@@ -151,7 +151,7 @@ function calculateServiceApp() {
     var start_date = document.getElementById('mod_app_start_id').value;
     var end_date = document.getElementById('mod_app_end_id').value;
 
-    if (start_date === "" || end_date === "" ) {
+    if (start_date === "" || end_date === "") {
         swal('Error', 'Please enter dates to calculate', 'warning')
         return
     }
@@ -162,20 +162,44 @@ function calculateServiceApp() {
     let TotalDays = Math.ceil(difference / (1000 * 3600 * 24)) + 1;
 
     if (TotalDays == 180) {
-        swal('6 service units.',`Total days: ${TotalDays}`,  'success');
+        swal('6 service units.', `Total days: ${TotalDays}`, 'success');
     } else if (_.inRange(TotalDays, 31)) {
-        swal('1 service unit.', `Total days: ${TotalDays}`,'warning');
+        swal('1 service unit.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 31, 61)) {
-        swal('2 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('2 service units.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 61, 91)) {
-        swal('3 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('3 service units.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 91, 121)) {
-        swal('4 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('4 service units.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 121, 151)) {
-        swal('5 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('5 service units.', `Total days: ${TotalDays}`, 'warning');
     } else if (_.inRange(TotalDays, 151, 180)) {
-        swal('6 service units.',`Total days: ${TotalDays}`,  'warning');
+        swal('6 service units.', `Total days: ${TotalDays}`, 'warning');
     } else {
-        swal('6 service units and INFO detail',`Total days ${TotalDays}.`,  'info');
+        swal('6 service units and INFO detail', `Total days ${TotalDays}.`, 'info');
     }
 }
+
+
+$("#end_date_id").keydown(function () {
+    if ($(this).val()) {
+        $("#req_dos_button").show();
+    } else {
+        $("#req_dos_button").hide();
+    }
+});
+
+$("#mod_den_end_id").keydown(function () {
+    if ($(this).val()) {
+        $("#den_service_button").show();
+    } else {
+        $("#den_service_button").hide();
+    }
+});
+$("#mod_app_end_id").keydown(function () {
+    if ($(this).val()) {
+        $("#app_service_button").show();
+    } else {
+        $("#app_service_button").hide();
+    }
+});
