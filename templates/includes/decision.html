@@ -1,7 +1,7 @@
 <hr>
 <div class="form-row mt-1">
-    <span class="pr-2">Clinician Decision:</span>
-    <div class="form-check form-check-inline pl-2">
+    <span class="pr-5 ">Decision:</span>
+    <div class="form-check form-check-inline">
         <input onclick="revealModForm()" name='decision' class="form-check-input" type="radio" id="approved" value='0'>
         <label class="form-check-label" for="approved">Approved</label>
     </div>
@@ -22,16 +22,16 @@
     <div class="form-row mt-1" id="hidden_modified" style="display:none;">
         <div class="form-check form-check-inline pl-2 mt-3">
             <span class="pr-3">Denied:</span>
-            <input class="form-check-input" placeholder='start' type="date" name="mod_app_start" id="">-
-            <input class="form-check-input" placeholder='end' type="date" name="mod_app_end" id="">
-            <button style='font-size: 12px;' type="button" onclick="calculateDates()">Service Units</button>
+            <input class="form-check-input" placeholder='start' type="date" name="mod_den_start" id="mod_den_start_id">-
+            <input class="form-check-input" placeholder='end' type="date" name="mod_den_end" id="mod_den_end_id">
+            <button style='font-size: 12px;' type="button" onclick="calculateServiceDenied()">Service Units</button>
         </div>
 
         <div class="form-check form-check-inline pl-2 mt-2">
             <span class="">Approved:</span>
-            <input class="form-check-input" placeholder='start' type="date" name="mod_den_start" id="">-
-            <input class="form-check-input" placeholder='end' type="date" name="mod_den_end" id="">
-            <button style='font-size: 12px;' type="button" onclick="calculateDates()">Service Units</button>
+            <input class="form-check-input" placeholder='start' type="date" name="mod_app_start" id="mod_app_start_id">-
+            <input class="form-check-input" placeholder='end' type="date" name="mod_app_end" id="mod_app_end_id">
+            <button style='font-size: 12px;' type="button" onclick="calculateServiceApp()">Service Units</button>
         </div>
     </div>
 
@@ -41,12 +41,12 @@
 <div class="form-row mt-4 row justify-content-between">
     <div class="col-4 form-check form-check-inline"
         style="display: inline-block; margin-left: auto; margin-right: auto">
-        <button class='btn btn-primary btn-block btn-sm' onlclick='validateForm()' type="submit">Submit</button>
+        <button class='btn btn-success btn-block btn-sm' onlclick='validateForm()' type="submit">Construct</button>
     </div>
 
-    <div class="col-4 form-check form-check-inline"
+    <div class="col-5 form-check form-check-inline"
         style="display: inline-block; margin-left: auto; margin-right: auto">
-        <button style="font-size:smaller;" type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">
+        <button style="font-size:smaller;" type="button" class="btn btn btn-info" data-toggle="modal" data-target="#myModal">
             MD signature check
         </button>
     </div>

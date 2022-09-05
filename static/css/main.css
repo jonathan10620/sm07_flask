@@ -29,28 +29,39 @@ input::placeholder {
 #setup_id {
     margin-right: 10px;
 }
+
 #htn {
     margin-right: 10px;
 }
+
 #dm {
     margin-right: 10px;
 }
 
-textarea { 
-    font-size: 12px; 
+#finalComment {
+    font-size: 12px;
+    width: 500px;
+    height: 150px;
 }
 
 #hidden_modified {
     display: none;
+
 }
 
 form {
-    max-width: 700px;
+    max-width: 650px;
     display: inline-block;
 }
 
-.center-mod {
+.center-mod {}
 
-    
-
+.swal-text {
+    background-color: #FEFAE3;
+    padding: 17px;
+    border: 1px solid #F0E1A1;
+    display: block;
+    margin: 22px;
+    text-align: center;
+    color: #61534e;
 }
