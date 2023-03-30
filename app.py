@@ -19,10 +19,7 @@ def index():
         set_up = request.form.get('s9110_U1')
         decision = request.form.get('decision')
 
-        mod_den_start = datetime.strptime(request.form.get('mod_den_start'),'%Y-%m-%d', )
-        mod_den_end =datetime.strptime(request.form.get('mod_den_end'),'%Y-%m-%d', )
-        mod_app_start  = datetime.strptime(request.form.get('mod_app_start'),'%Y-%m-%d', )
-        mod_app_end = datetime.strptime(request.form.get('mod_app_end'),'%Y-%m-%d', )
+        
 
 
 
@@ -40,6 +37,10 @@ def index():
 
             final_decision_blurb = f'DOS {start_date.strftime("%m/%d/%Y")}-{end_date.strftime("%m/%d/%Y")} are approved based on Texas Medicaid Medical Policy Manual-XXX-XXXX Telemonitoring Services and SOP 111. <Initials>'
         elif decision == '1':
+            mod_den_start = datetime.strptime(request.form.get('mod_den_start'),'%Y-%m-%d', )
+            mod_den_end =datetime.strptime(request.form.get('mod_den_end'),'%Y-%m-%d', )
+            mod_app_start  = datetime.strptime(request.form.get('mod_app_start'),'%Y-%m-%d', )
+            mod_app_end = datetime.strptime(request.form.get('mod_app_end'),'%Y-%m-%d', )
             if exceed_auth:
                 end_date = start_date + timedelta(days=179)
                 app_dates = f'{mod_app_start.strftime("%m/%d/%Y")}-{end_date}'
